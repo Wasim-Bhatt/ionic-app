@@ -1,0 +1,32 @@
+<ion-header color="primary">
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let item of blogs" class="custom-card" >
+    <ion-item *ngIf="item.userID == currentUserID" style="width: 100%;" lines="full">
+      <ion-label>Author</ion-label>
+      <ion-badge color="primary">You</ion-badge>
+    </ion-item>
+    <div class="flex-row">
+      <ion-label class="label">Date</ion-label>
+      <p class="value">{{item?.date}}</p>
+    </div>
+    <div class="flex-row">
+      <ion-label class="label">Title</ion-label>
+      <p class="value">{{item?.title}}</p>
+    </div>
+    <div class="flex-row">
+      <ion-label class="label">Post</ion-label>
+      <p class="value">{{item?.post}}</p>
+    </div>
+    <div style="display: flex;align-items: center;justify-content: space-around;">
+      <ion-button size="small" shape="round" mode="ios" (click)="editBlog(item.id)">Edit</ion-button>
+      <ion-button color="new" size="small" shape="round" mode="ios" (click)="presentAlert(item.id)">Delete</ion-button>
+    </div>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-header color="primary">
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Add Blog</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card style="padding: 12px;">
+        <form [formGroup]="blogForm">
+          <ion-item>
+            <ion-input formControlName="date" label="Date" labelPlacement="floating" placeholder="Enter date"></ion-input>
+          </ion-item>
+          <ng-container>
+            <div *ngIf=" blogForm?.get('date')?.hasError('required') &&
+            (blogForm?.get('date')?.dirty || blogForm?.get('date')?.touched)">
+              <span style="color: crimson;margin-left: 10px;font-size: 12px;">Date is required</span>
+            </div>
+          </ng-container>
+          <ion-item>
+            <ion-input formControlName="title" label="Title" labelPlacement="floating" placeholder="Enter title"></ion-input>
+          </ion-item>
+          <ng-container>
+            <div *ngIf=" blogForm?.get('title')?.hasError('required') &&
+            (blogForm?.get('title')?.dirty || blogForm?.get('title')?.touched)">
+              <span style="color: crimson;margin-left: 10px;font-size: 12px;">Title is required</span>
+            </div>
+          </ng-container>
+          <ion-item>
+            <ion-textarea style="width: 100%;" [rows]="10" [cols]="10" formControlName="post" label="Post" labelPlacement="floating" placeholder="Enter post"></ion-textarea>
+          </ion-item>
+          <ng-container>
+            <div *ngIf=" blogForm?.get('post')?.hasError('required') &&
+            (blogForm?.get('post')?.dirty || blogForm?.get('post')?.touched)">
+              <span style="color: crimson;margin-left: 10px;font-size: 12px;">Post is required</span>
+            </div>
+          </ng-container>
+          <div style="margin-top: 20px;">
+            <ion-button
+            (click)="onSubmit()"
+            mode="ios"
+            expand="block"
+            shape="round"
+            >{{blogID ? "Update" : "Save"}} 
+          </ion-button>
+          </div>
+        </form>
+    </ion-card>
+</ion-content>

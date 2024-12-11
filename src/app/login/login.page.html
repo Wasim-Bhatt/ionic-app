@@ -1,0 +1,41 @@
+
+<ion-content>
+  <div style="height: 100%;width: 100%;display: flex;align-items: center;justify-content: center;">
+    <ion-card style="width: inherit;">
+      <ion-card-header>
+        <h3 style="text-align: center;font-weight: bold;color: black;margin: 0;">Login</h3> </ion-card-header>
+        <div style="border: 1px solid gray;"></div>
+      <ion-card-content>
+        <form [formGroup]="loginForm">
+          <ion-item>
+            <ion-input formControlName="userName" label="Username" labelPlacement="floating" placeholder="Enter username"></ion-input>
+          </ion-item>
+          <ng-container>
+            <div *ngIf=" loginForm?.get('userName')?.hasError('required') &&
+            (loginForm?.get('userName')?.dirty || loginForm?.get('userName')?.touched)">
+              <span style="color: crimson;margin-left: 10px;font-size: 12px;">Username is required</span>
+            </div>
+          </ng-container>
+          <ion-item>
+            <ion-input formControlName="password" label="Password" labelPlacement="floating" placeholder="Enter password"></ion-input>
+          </ion-item>
+          <ng-container>
+            <div *ngIf=" loginForm?.get('password')?.hasError('required') &&
+            (loginForm?.get('password')?.dirty || loginForm?.get('password')?.touched)">
+              <span style="color: crimson;margin-left: 10px;font-size: 12px;">Password is required</span>
+            </div>
+          </ng-container>
+          <div style="margin-top: 20px;">
+            <ion-button
+            (click)="onSubmit()"
+            mode="ios"
+            expand="block"
+            shape="round"
+            >Sign In
+          </ion-button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
